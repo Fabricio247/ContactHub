@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar contacto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<!-- Contenedor principal con menú -->
+<div class="pagina">
+    <!-- Menú lateral -->
+    <div class="menu-lateral">
+        <div class="logo">ContactHub</div>
+        <a href="{{ url_for('contactos') }}">Inicio</a>
+        <a href="{{ url_for('agregar') }}">Agregar</a>
+        <a class="activo" href="{{ url_for('buscar') }}">Buscar</a>
+        <a href="{{ url_for('reportes') }}">Reportes</a>
+        <a href="{{ url_for('cerrar') }}">Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="contenido">
+        <div class="caja">
+            <h1>Buscar contacto</h1>
+
+            <!-- Formulario de búsqueda -->
+            <form method="POST" class="formulario">
+                <label>Nombre del contacto</label>
+                <input type="text" name="texto" value="{{ texto }}">
+                <button type="submit">Buscar</button>
+               <a class="boton-claro" href="{{ url_for('contactos') }}">Limpiar</a>
+  
+            </form>
+
+            <!-- Grid con resultados -->
+            <br>
+            <div class="grid-contactos">
+                {% for c in resultados %}
+                <div class="contacto-card">
+                    <!-- Avatar con primera letra del nombre -->
+                    <div class="avatar">{{ c.nombre[0] }}</div>
+                    <div class="nombre">{{ c.nombre }} {{ c.apellido }}</div>
+                    <p class="info">{{ c.telefono }}</p>
+                    <p class="info">{{ c.correo }}</p>
+                    <p class="info">{% if c.favorito == 'Sí' %}Favorito{% else %}Normal{% endif %}</p>
+                    <a class="boton" href="{{ url_for('detalle', contacto_id=c.id) }}">Ver más</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

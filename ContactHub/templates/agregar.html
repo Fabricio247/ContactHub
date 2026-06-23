@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar contacto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<!-- Contenedor principal con menú -->
+<div class="pagina">
+    <!-- Menú lateral -->
+    <div class="menu-lateral">
+        <div class="logo">ContactHub</div>
+        <a href="{{ url_for('contactos') }}">Inicio</a>
+        <a class="activo" href="{{ url_for('agregar') }}">Agregar</a>
+        <a href="{{ url_for('buscar') }}">Buscar</a>
+        <a href="{{ url_for('reportes') }}">Reportes</a>
+        <a href="{{ url_for('cerrar') }}">Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="contenido">
+        <div class="caja formulario">
+            <h1>Agregar contacto</h1>
+
+            <!-- Mostrar error si falla la validación -->
+            {% if error %}
+            <script>alert("{{ error }}");</script>
+            {% endif %}
+
+            <!-- Formulario con validación -->
+            <form method="POST" onsubmit="return validarFormulario()">
+                <label>Nombre</label>
+                <input id="nombre" type="text" name="nombre">
+
+                <label>Apellido</label>
+                <input type="text" name="apellido">
+
+                <label>Teléfono</label>
+                <input id="telefono" type="text" name="telefono">
+
+                <label>Correo</label>
+                <input id="correo" type="text" name="correo">
+
+                <label>Dirección</label>
+                <textarea name="direccion"></textarea>
+
+                <!-- Seleccionar categoría -->
+                <label>Categoría</label>
+                <select name="categoria">
+                    {% for categoria in categorias %}
+                    <option value="{{ categoria }}">{{ categoria }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Si es favorito o no -->
+                <label>Favorito</label>
+                <select name="favorito">
+                    <option value="No">No</option>
+                    <option value="Sí">Sí</option>
+                </select>
+
+                <button type="submit">Guardar</button>
+                <a class="boton-claro" href="{{ url_for('contactos') }}">Volver</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

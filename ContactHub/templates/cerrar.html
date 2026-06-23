@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cerrar sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="login-body">
+    <!-- Contenedor del mensaje de despedida -->
+    <div class="login-caja">
+        <div class="logo">ContactHub</div>
+        <h2>Sesión cerrada</h2>
+        <p>Saliste correctamente del sistema.</p>
+        <!-- Botón para volver al login -->
+        <a class="boton" href="{{ url_for('login') }}">Volver al login</a>
+    </div>
+</body>
+</html>

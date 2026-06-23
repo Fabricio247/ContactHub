@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<!-- Contenedor principal con menú -->
+<div class="pagina">
+    <!-- Menú lateral -->
+    <div class="menu-lateral">
+        <div class="logo">ContactHub</div>
+        <a href="{{ url_for('contactos') }}">Inicio</a>
+        <a href="{{ url_for('agregar') }}">Agregar</a>
+        <a href="{{ url_for('buscar') }}">Buscar</a>
+        <a href="{{ url_for('reportes') }}">Reportes</a>
+        <a href="{{ url_for('cerrar') }}">Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="contenido">
+        <div class="caja">
+            <h1>Más información</h1>
+
+            <!-- Tarjeta de detalle -->
+        <div class="detalle-card">
+            <!-- Avatar con primera letra del nombre -->
+             <div class="avatar">{{ contacto.nombre[0] }}</div>
+             <h2>{{ contacto.nombre }} {{ contacto.apellido }}</h2>
+                
+                <!-- Todos los datos del contacto -->
+             <p><b>Teléfono:</b> {{ contacto.telefono }}</p>
+              <p><b>Correo:</b> {{ contacto.correo }}</p>
+              <p><b>Dirección:</b> {{ contacto.direccion }}</p>
+              <p><b>Categoría:</b> {{ contacto.categoria }}</p>
+              <p><b>Tipo:</b> {% if contacto.favorito == 'Sí' %}Favorito{% else %}Normal{% endif %}</p>
+              <p><b>Estado actual:</b> Conectado</p>
+
+                <!-- Botones de acciones -->
+                <a class="boton" href="{{ url_for('editar', contacto_id=contacto.id) }}">Editar</a>
+                <form method="POST" action="{{ url_for('eliminar', contacto_id=contacto.id) }}" style="display:inline;" onsubmit="return confirmarEliminar('{{ contacto.nombre }} {{ contacto.apellido }}')">
+                    <button class="boton-rojo" type="submit">Eliminar</button>
+                </form>
+                <a class="boton-claro" href="{{ url_for('contactos') }}">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

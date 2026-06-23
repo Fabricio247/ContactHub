@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<!-- Contenedor principal con menú -->
+<div class="pagina">
+    <!-- Menú lateral -->
+    <div class="menu-lateral">
+        <div class="logo">ContactHub</div>
+        <a href="{{ url_for('contactos') }}">Inicio</a>
+        <a href="{{ url_for('agregar') }}">Agregar</a>
+        <a href="{{ url_for('buscar') }}">Buscar</a>
+        <a class="activo" href="{{ url_for('reportes') }}">Reportes</a>
+        <a href="{{ url_for('cerrar') }}">Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="contenido">
+        <div class="caja">
+            <h1>Reporte general</h1>
+            
+            <!-- Grid con dos tarjetas de estadísticas -->
+            <div class="reporte-grid">
+                <!-- Tarjeta 1: Total de contactos -->
+                <div class="reporte-card">
+                    <p>Total de contactos</p>
+                    <!-- Muestra el número total de contactos -->
+                    <div class="numero">{{ total }}</div>
+                </div>
+                
+                <!-- Tarjeta 2: Contactos favoritos -->
+                <div class="reporte-card">
+                    <p>Contactos favoritos</p>
+                    <!-- Muestra cuántos contactos son favoritos -->
+                    <div class="numero">{{ favoritos }}</div>
+                </div>
+            </div>
+            
+            <br>
+            
+            <!-- Botón para volver a la lista de contactos -->
+            <a class="boton-claro" href="{{ url_for('contactos') }}">Volver</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

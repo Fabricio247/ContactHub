@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="login-body">
+    <!-- Contenedor del formulario de login -->
+    <div class="login-caja">
+        <img src="{{ url_for('static', filename='img/contacHub.png') }}" alt="ContactHub">
+        <h2>Iniciar sesión</h2>
+        <p>Ingrese sus datos para continuar</p>
+
+        <!-- Mostrar error si falla la validación -->
+        {% if error %}
+        <script>alert("{{ error }}");</script>
+        {% endif %}
+
+        <!-- Formulario POST para ininiciar sesión -->
+        <form method="POST">
+            <label>Usuario</label>
+            <input type="text" name="usuario" placeholder="admin">
+
+            <label>Contraseña</label>
+            <input type="password" name="contrasena" placeholder="1234">
+
+            <div class="opciones-login">
+                <label><input type="checkbox" name="recordar"> Recordar contraseña</label>
+                <a href="#" onclick="olvidoContrasena()">¿Olvidó su contraseña?</a>
+            </div>
+
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

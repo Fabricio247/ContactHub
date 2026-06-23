@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar contacto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<!-- Contenedor principal con menú -->
+<div class="pagina">
+    <!-- Menú lateral -->
+    <div class="menu-lateral">
+        <div class="logo">ContactHub</div>
+        <a href="{{ url_for('contactos') }}">Inicio</a>
+        <a href="{{ url_for('agregar') }}">Agregar</a>
+        <a href="{{ url_for('buscar') }}">Buscar</a>
+        <a href="{{ url_for('reportes') }}">Reportes</a>
+        <a href="{{ url_for('cerrar') }}">Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="contenido">
+        <div class="caja formulario">
+            <h1>Editar contacto</h1>
+
+            <!-- Mostrar error si falla la validación -->
+            {% if error %}
+            <script>alert("{{ error }}");</script>
+            {% endif %}
+
+            <!-- Formulario con validación y confirmación -->
+            <form method="POST" onsubmit="return confirmarEditar()">
+                <!-- Campo: Nombre (prerellenado) -->
+                <label>Nombre</label>
+                <input id="nombre" type="text" name="nombre" value="{{ contacto.nombre }}">
+
+                <label>Apellido</label>
+                <input type="text" name="apellido" value="{{ contacto.apellido }}">
+
+                <!-- Campo: Teléfono (prerellenado) -->
+                <label>Teléfono</label>
+                <input id="telefono" type="text" name="telefono" value="{{ contacto.telefono }}">
+
+                <!-- Campo: Correo (prerellenado) -->
+                <label>Correo</label>
+                <input id="correo" type="text" name="correo" value="{{ contacto.correo }}">
+
+                <label>Dirección</label>
+                <textarea name="direccion">{{ contacto.direccion }}</textarea>
+
+                <!-- Seleccionar categoría (preseleccionada) -->
+                <label>Categoría</label>
+                <select name="categoria">
+                    {% for categoria in categorias %}
+                    <option value="{{ categoria }}" {% if contacto.categoria == categoria %}selected{% endif %}>{{ categoria }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Si es favorito o no (preseleccionado) -->
+                <label>Favorito</label>
+                <select name="favorito">
+                    <option value="No" {% if contacto.favorito == 'No' %}selected{% endif %}>No</option>
+                    <option value="Sí" {% if contacto.favorito == 'Sí' %}selected{% endif %}>Sí</option>
+                </select>
+
+                <!-- Botones de acción -->
+                <button type="submit">Actualizar</button>
+                <a class="boton-claro" href="{{ url_for('contactos') }}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+/* Ajustes generales */
+* {
+    box-sizing: border-box;
+}
+
+/* Configuración del cuerpo de la página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #dbeeff;
+    color: #222;
+}
+
+/* Estructura principal con flexbox */
+.pagina {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Panel lateral */
+.menu-lateral {
+    width: 150px;
+    background: #f5f9ff;
+    padding: 15px 10px;
+    border-right: 1px solid #c7d9ee;
+}
+
+/* Logo del menú */
+.logo {
+    color: #1266d6;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Enlaces del menú */
+.menu-lateral a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Cuando el enlace está activo o se pasa el cursor */
+.menu-lateral a:hover,
+.menu-lateral .activo {
+    background: #1d73e8;
+    color: white;
+}
+
+/* Área principal del contenido */
+.contenido {
+    flex: 1;
+    padding: 25px;
+}
+
+/* Caja blanca donde va el contenido principal */
+.caja {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    max-width: 950px;
+    margin: auto;
+    box-shadow: 0 0 8px #b9cee2;
+}
+
+/* Barra superior con título y botones */
+.arriba {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Títulos grandes */
+h1, h2 {
+    color: #1d73e8;
+    margin: 5px 0 15px;
+}
+
+/* Página de login centrada */
+.login-body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #dbeeff;
+}
+
+/* Caja blanca del formulario de login */
+.login-caja {
+    width: 360px;
+    background: white;
+    border-radius: 14px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 8px #b9cee2;
+}
+
+/* Campos de entrada */
+input, textarea, select {
+    width: 100%;
+    padding: 9px;
+    margin: 6px 0 13px;
+    border: 1px solid #ccd5e0;
+    border-radius: 8px;
+    background: #f2f2f2;
+}
+
+/* Etiquetas de los campos */
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Botones comunes */
+button, .boton {
+    background: #1d73e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 14px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 17px;
+    margin: 3px;
+}
+
+/* Botón rojo para eliminar */
+.boton-rojo {
+    background: #e63946;
+}
+
+/* Botón claro para acciones secundarias */
+.boton-claro{
+    background-color: rgb(0, 166, 255);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+
+/* Grid para mostrar los contactos en columnas */
+.grid-contactos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+/* Cada tarjeta de contacto */
+.contacto-card {
+    background: #eaf4ff;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #c6dbf4;
+}
+
+/* Avatar circular dentro de la tarjeta */
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #1d73e8;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Nombre dentro de la tarjeta */
+.nombre {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+/* Información del contacto */
+.info {
+    font-size: 13px;
+    color: #555;
+    margin: 3px 0;
+}
+
+/* Espacio antes de los botones de acción */
+.acciones {
+    margin-top: 8px;
+}
+
+/* Botones dentro de la tarjeta */
+.acciones .boton,
+.acciones button {
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+/* Ancho máximo para formularios */
+.formulario {
+    max-width: 520px;
+    margin: auto;
+}
+
+/* Tarjeta de detalle del contacto */
+.detalle-card {
+    max-width: 500px;
+    margin: auto;
+    background: #eaf4ff;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+/* Caja para los reportes */
+.reporte-grid {
+    display: flex;
+    gap: 20px;
+}
+
+/* Tarjeta de cada estadística */
+.reporte-card {
+    flex: 1;
+    background: #eaf4ff;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+}
+
+/* Número grande en reportes */
+.numero {
+    font-size: 40px;
+    color: #1d73e8;
+    font-weight: bold;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 800px) {
+    .pagina {
+        display: block;
+    }
+
+    .menu-lateral {
+        width: 100%;
+    }
+
+    .grid-contactos {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Contenedor de las opciones de login */
+.opciones-login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    margin: 8px 0 15px 0;
+}
+
+/* Estilo de los enlaces dentro de opciones de login */
+.opciones-login a{
+    color: #1d4ed8;
+    text-decoration: none;
+}
+
+/* Formulario en línea dentro de acciones */
+.acciones form{
+    display: inline-block;
+}

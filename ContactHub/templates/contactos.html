@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contactos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<!-- Contenedor principal con menú y contenido -->
+<div class="pagina">
+    <!-- Menú lateral -->
+    <div class="menu-lateral">
+        <div class="logo">ContactHub</div>
+        <a class="activo" href="{{ url_for('contactos') }}">Inicio</a>
+        <a href="{{ url_for('agregar') }}">Agregar</a>
+        <a href="{{ url_for('buscar') }}">Buscar</a>
+        <a href="{{ url_for('reportes') }}">Reportes</a>
+        <a href="{{ url_for('cerrar') }}">Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="contenido">
+        <div class="caja">
+            <div class="arriba">
+                <h1>Contactos</h1>
+                <div>
+                    <a class="boton" href="{{ url_for('agregar') }}">Agregar contacto</a>
+                    <a class="boton-claro"href="{{ url_for('contactos', orden='az') }}">Ordenar de A a Z</a>
+                </div>
+            </div>
+
+            <!-- Grid con todas las tarjetas de contactos -->
+            <div class="grid-contactos">
+                {% for c in contactos %}
+                <div class="contacto-card">
+                    <!-- Avatar con primera letra del nombre -->
+                    <div class="avatar">{{ c.nombre[0] }}</div>
+                    <div class="nombre">{{ c.nombre }} {{ c.apellido }}</div>
+                    <p class="info">{{ c.telefono }}</p>
+                    <p class="info">{{ c.categoria }}</p>
+                    <p class="info">{% if c.favorito == 'Sí' %}Favorito{% else %}Normal{% endif %}</p>
+
+                    <!-- Botones para las acciones acciones -->
+                    <div class="acciones">
+                        <a class="boton" href="{{ url_for('detalle', contacto_id=c.id) }}">Ver</a>
+                        <a class="boton" href="{{ url_for('editar', contacto_id=c.id) }}">Editar</a>
+                        <form action="{{ url_for('eliminar', contacto_id=c.id) }}"
+                              method="POST"
+                              onsubmit="return confirmarEliminar('{{ c.nombre }} {{ c.apellido }}')">
+                            <button type="submit" class="boton-rojo">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
